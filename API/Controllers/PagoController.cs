@@ -72,4 +72,13 @@ public class PagoController : BaseApiController
         var entities = await _unitOfWork.Pagos.GetPorAño(anio, formaPago);
         return _mapper.Map<List<PagoDto>>(entities);
     }
+
+    [HttpGet("GetFormasPago")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<object>>> GetFormasPago()
+    {
+        var entities = await _unitOfWork.Pagos.GetFormasPago();
+        return Ok(entities);
+    }
 }

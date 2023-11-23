@@ -12,3 +12,8 @@ public partial class EmpleadoDto
     public int CodigoJefe { get; set; }
     public string Puesto { get; set; }
 }
+public class JefeDto
+{
+    public string Nombre { get; set; }
+    public JefeDto Jefe { get; set; }
+}

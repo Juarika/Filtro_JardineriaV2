@@ -15,5 +15,12 @@ public class ProductoRepository : GenericRepository<Producto>, IProducto
         _context = context;
     }
 
-    
+    public async Task<IEnumerable<Producto>> GetSinPedido()
+    {
+        var entities = await _context
+            .Productos
+            .Where(e => !_context.DetallePedidos.Any(d => d.CodigoProducto == e.CodigoProducto))
+            .ToListAsync();
+        return entities;
+    }
 }

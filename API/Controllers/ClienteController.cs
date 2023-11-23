@@ -63,4 +63,40 @@ public class ClienteController : BaseApiController
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
+
+    [HttpGet("GetRepOfi")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<object>>> GetRepOfi()
+    {
+        var entities = await _unitOfWork.Clientes.GetRepOfi();
+        return Ok(entities);
+    }
+
+    [HttpGet("GetSinPago")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<ClienteDto>>> GetSinPago()
+    {
+        var entities = await _unitOfWork.Clientes.GetSinPago();
+        return _mapper.Map<List<ClienteDto>>(entities);
+    }
+
+    [HttpGet("GetRepOfiTodos")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<object>>> GetRepOfiTodos()
+    {
+        var entities = await _unitOfWork.Clientes.GetRepOfiTodos();
+        return Ok(entities);
+    }
+
+    [HttpGet("GetRepOfiTel")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<object>>> GetRepOfiTel()
+    {
+        var entities = await _unitOfWork.Clientes.GetRepOfiTel();
+        return Ok(entities);
+    }
 }

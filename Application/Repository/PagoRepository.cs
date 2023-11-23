@@ -24,4 +24,14 @@ public class PagoRepository : GenericRepository<Pago>, IPago
             .ToListAsync();
         return entities;
     }
+
+    public async Task<IEnumerable<object>> GetFormasPago()
+    {
+        var entities = await _context
+            .Pagos
+            .Select(e => e.FormaPago)
+            .Distinct()
+            .ToListAsync();
+        return entities;
+    }
 }

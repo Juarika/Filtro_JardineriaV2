@@ -15,5 +15,13 @@ public class EmpleadoRepository : GenericRepository<Empleado>, IEmpleado
         _context = context;
     }
 
-    
+    public async Task<IEnumerable<Empleado>> GetJefe()
+    {
+        var entities = await _context
+            .Empleados
+            .Include(e => e.Jefe)
+            .ThenInclude(e => e.Jefe)
+            .ToListAsync();
+        return entities;
+    }
 }

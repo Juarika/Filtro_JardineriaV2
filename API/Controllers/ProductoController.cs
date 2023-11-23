@@ -63,4 +63,13 @@ public class ProductoController : BaseApiController
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
+
+    [HttpGet("GetSinPedido")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<ProdNomDesDto>>> GetSinPedido()
+    {
+        var entities = await _unitOfWork.Productos.GetSinPedido();
+        return _mapper.Map<List<ProdNomDesDto>>(entities);
+    }
 }

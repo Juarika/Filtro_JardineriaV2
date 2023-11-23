@@ -12,3 +12,8 @@ public partial class ProductoDto
     public decimal PrecioVenta { get; set; }
     public decimal PrecioProveedor { get; set; }
 }
+public class ProdNomDesDto
+{
+    public string Nombre { get; set; }
+    public string Descripcion { get; set; }
+}

@@ -16,5 +16,10 @@ public class MappingProfiles : Profile
         CreateMap<Pago, PagoDto>().ReverseMap();
         CreateMap<Pedido, PedidoDto>().ReverseMap();
         CreateMap<Producto, ProductoDto>().ReverseMap();
+        CreateMap<Producto, ProdNomDesDto>().ReverseMap();
+        CreateMap<Empleado, JefeDto>()
+        .ReverseMap()
+        .ForAllMembers(e => e.Ignore());
+
     }
 }

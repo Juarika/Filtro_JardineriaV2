@@ -63,4 +63,13 @@ public class PedidoController : BaseApiController
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
+
+    [HttpGet("GetPedidosEstado")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<object>>> GetPedidosEstado()
+    {
+        var entities = await _unitOfWork.Pedidos.GetPedidosEstado();
+        return Ok(entities);
+    }
 }

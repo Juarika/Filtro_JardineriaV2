@@ -63,4 +63,13 @@ public class EmpleadoController : BaseApiController
         await _unitOfWork.SaveAsync();
         return NoContent();
     }
+
+    [HttpGet("GetJefe")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<JefeDto>>> GetJefe()
+    {
+        var entities = await _unitOfWork.Empleados.GetJefe();
+        return _mapper.Map<List<JefeDto>>(entities);
+    }
 }

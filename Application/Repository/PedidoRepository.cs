@@ -15,5 +15,19 @@ public class PedidoRepository : GenericRepository<Pedido>, IPedido
         _context = context;
     }
 
-    
+    public async Task<IEnumerable<object>> GetPedidosEstado()
+    {
+        var entities = await _context
+            .Pedidos
+            .GroupBy(e => e.Estado)
+            .Select(e => new 
+                {
+                    Estado = e.Key,
+                    TotalPedidos = e.Count()
+                }
+            )
+            .OrderByDescending(e => e.TotalPedidos)
+            .ToListAsync();
+        return entities;
+    }
 }

@@ -4,5 +4,5 @@ namespace Domain.Interfaces;
 
 public interface IEmpleado : IGenericRepository<Empleado>
 {
-    
+    Task<IEnumerable<Empleado>> GetJefe();
 }
